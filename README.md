@@ -12,7 +12,7 @@ npm i -S vue2-helpers
 ### vue2-helpers
 |Declaration|Description|
 |-|-|
-|createVuexHelpers&lt;<br>&nbsp;&nbsp;RootState, RootGetters, RootMutations, RootActions<br>&gt;(): { useState,  useGetters, useMutations, useActions }||
+|createVuexHelpers&lt;<br>&nbsp;&nbsp;&nbsp;&nbsp;RootState, RootGetters, RootMutations, RootActions<br>&gt;(): {<br>&nbsp;&nbsp;&nbsp;&nbsp;useState, useGetters, useMutations, useActions<br>}|The usage of `useState` is the same as `mapActions` |
 
 ### vue2-helpers/vuex
 |Declaration|Description|
@@ -28,3 +28,9 @@ npm i -S vue2-helpers
 |useRoute(): Route \| undefined||
 |onBeforeRouteLeave(leaveGuard: NavigationGuard): void||
 |onBeforeRouteUpdate(updateGuard: NavigationGuard): void||
+
+
+## ☎️ Contact
+1. WeChat: ambit_tsai
+1. QQ Group: 663286147
+1. E-mail: ambit_tsai@qq.com
