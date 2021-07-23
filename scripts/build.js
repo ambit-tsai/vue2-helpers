@@ -1,15 +1,19 @@
-const rollup = require('rollup');
-const typescript = require('@rollup/plugin-typescript');
-const { terser } = require('rollup-plugin-terser');
-const banner = require('./banner');
+const rollup = require('rollup')
+const typescript = require('@rollup/plugin-typescript')
+const { terser } = require('rollup-plugin-terser')
+const banner = require('./banner')
+const fs = require('fs')
 
 
-pack('src/index.ts');
-pack('src/vuex.ts');
-pack('src/vue-router.ts');
+compile('src/index.ts')
+compile('src/vuex.ts')
+compile('src/vue-router.ts')
+copyFile('package.json')
+copyFile('README.md')
+copyFile('LICENSE')
 
 
-async function pack(file) {
+async function compile(file) {
     const bundle = await rollup.rollup({
         input: file,
         external: [
@@ -21,11 +25,17 @@ async function pack(file) {
             typescript(),
             terser(),
         ],
-    });
+    })
     await bundle.write({
         dir: 'dist',
         banner,
         format: 'esm',
         sourcemap: true,
-    });
+    })
+}
+
+function copyFile(file) {
+    fs.copyFile(file, `dist/${file}`, err => {
+        if (err) console.log(err);
+    })
 }
