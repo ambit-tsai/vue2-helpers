@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import { getCurrentInstance } from '@vue/composition-api'
 import RawRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
@@ -16,6 +17,7 @@ RawRouter.prototype.isReady = function () {
 
 
 export function createRouter(options: RouterOptions) {
+    Vue.use(RawRouter)
     return new RawRouter(options) as VueRouter
 }
 
