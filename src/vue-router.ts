@@ -6,7 +6,17 @@ import { OUT_OF_SCOPE, warn } from './utils'
 
 export interface VueRouter extends RawRouter {
     isReady: () => Promise<void>
+
+    /** @deprecated */
+    app: RawRouter['app']
+
+    /** @deprecated */
+    getMatchedComponents: RawRouter['getMatchedComponents']
+
+    /** @deprecated use `isReady` instead */
+    onReady: RawRouter['onReady']
 }
+
 
 // @ts-ignore
 RawRouter.prototype.isReady = function () {
