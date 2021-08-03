@@ -1,10 +1,22 @@
 import { getCurrentInstance } from '@vue/composition-api'
-import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
+import RawRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
 
+export interface VueRouter extends RawRouter {
+    isReady: () => Promise<void>
+}
+
+// @ts-ignore
+RawRouter.prototype.isReady = function () {
+    return new Promise((resolve, reject) => {
+        this.onReady(resolve, reject);
+    });
+}
+
+
 export function createRouter(options: RouterOptions) {
-    return new VueRouter(options)
+    return new RawRouter(options) as VueRouter
 }
 
 
@@ -16,7 +28,6 @@ export function useRouter() {
         warn(OUT_OF_SCOPE)
     }
 }
-
 
 export function useRoute() {
     const inst = getCurrentInstance()
