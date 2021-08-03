@@ -43,6 +43,7 @@ router.push('/login');
 |`onBeforeRouteUpdate`(updateGuard: NavigationGuard): void||
 |`useRoute`(): Route \| undefined||
 |`useRouter`(): VueRouter \| undefined||
+|router.`isReady`(): Promise\<void\>||
 
 
 ## ☎️ Contact

@@ -17,6 +17,7 @@ async function compile(file) {
     const bundle = await rollup.rollup({
         input: file,
         external: [
+            'vue',
             '@vue/composition-api',
             'vuex',
             'vue-router',
