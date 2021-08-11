@@ -1,12 +1,13 @@
 {
   "name": "vue2-helpers",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A util package to use Vue 2 with Composition API easily",
   "author": "Ambit Tsai <ambit_tsai@qq.com>",
   "license": "Apache-2.0",
   "main": "index.js",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "publish": "npm publish dist"
   },
   "repository": {
     "type": "git",
