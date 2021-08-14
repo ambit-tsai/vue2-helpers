@@ -1,25 +1,25 @@
 import Vue from 'vue'
 import { getCurrentInstance } from '@vue/composition-api'
-import RawRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
+import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
 
-export interface VueRouter extends RawRouter {
+export interface Router extends VueRouter {
     isReady: () => Promise<void>
 
     /** @deprecated */
-    app: RawRouter['app']
+    app: VueRouter['app']
 
     /** @deprecated */
-    getMatchedComponents: RawRouter['getMatchedComponents']
+    getMatchedComponents: VueRouter['getMatchedComponents']
 
     /** @deprecated use `isReady` instead */
-    onReady: RawRouter['onReady']
+    onReady: VueRouter['onReady']
 }
 
 
 // @ts-ignore
-RawRouter.prototype.isReady = function () {
+VueRouter.prototype.isReady = function () {
     return new Promise((resolve, reject) => {
         this.onReady(resolve, reject);
     });
@@ -27,15 +27,15 @@ RawRouter.prototype.isReady = function () {
 
 
 export function createRouter(options: RouterOptions) {
-    Vue.use(RawRouter)
-    return new RawRouter(options) as VueRouter
+    Vue.use(VueRouter)
+    return new VueRouter(options) as Router
 }
 
 
 export function useRouter() {
     const inst = getCurrentInstance()
     if (inst) {
-        return inst.proxy.$router as VueRouter
+        return inst.proxy.$router as Router
     } else {
         warn(OUT_OF_SCOPE)
     }

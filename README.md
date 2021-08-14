@@ -1,4 +1,4 @@
-# Vue 2 Helpers
+# Vue2 Helpers
 A util package to use Vue 2 with Composition API easily.
 
 
@@ -38,11 +38,11 @@ router.push('/login');
 ### vue2-helpers/vue-router
 |Declaration|Description|
 |-|-|
-|`createRouter`(options: RouterOptions): VueRouter||
+|`createRouter`(options: RouterOptions): Router||
 |`onBeforeRouteLeave`(leaveGuard: NavigationGuard): void||
 |`onBeforeRouteUpdate`(updateGuard: NavigationGuard): void||
 |`useRoute`(): Route \| undefined||
-|`useRouter`(): VueRouter \| undefined||
+|`useRouter`(): Router \| undefined||
 |router.`isReady`(): Promise\<void\>||
 
 
