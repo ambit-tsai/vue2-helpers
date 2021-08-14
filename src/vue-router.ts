@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import { getCurrentInstance } from '@vue/composition-api'
-import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
+import VueRouter, { NavigationGuard, Route, RouterOptions, RouteConfig } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
+
+export type RouteRecordRaw = RouteConfig
 
 export interface Router extends VueRouter {
     isReady: () => Promise<void>
