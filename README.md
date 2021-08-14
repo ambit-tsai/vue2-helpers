@@ -41,8 +41,8 @@ router.push('/login');
 |`createRouter`(options: RouterOptions): Router||
 |`onBeforeRouteLeave`(leaveGuard: NavigationGuard): void||
 |`onBeforeRouteUpdate`(updateGuard: NavigationGuard): void||
-|`useRoute`(): Route \| undefined||
-|`useRouter`(): Router \| undefined||
+|`useRoute`(): RouteLocationNormalized||
+|`useRouter`(): Router||
 |router.`isReady`(): Promise\<void\>||
 
 

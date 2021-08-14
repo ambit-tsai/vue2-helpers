@@ -38,15 +38,20 @@ export function useRouter() {
         return inst.proxy.$router as Router
     } else {
         warn(OUT_OF_SCOPE)
+        return undefined as unknown as Router
     }
 }
+
+export interface RouteLocationNormalized extends Route {}
+export interface RouteLocationNormalizedLoaded extends Route {}
 
 export function useRoute() {
     const inst = getCurrentInstance()
     if (inst) {
-        return inst.proxy.$route as Route
+        return inst.proxy.$route as RouteLocationNormalizedLoaded
     } else {
         warn(OUT_OF_SCOPE)
+        return undefined as unknown as RouteLocationNormalizedLoaded
     }
 }
 
