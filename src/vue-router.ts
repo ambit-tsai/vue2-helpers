@@ -23,8 +23,8 @@ export interface Router extends VueRouter {
 // @ts-ignore
 VueRouter.prototype.isReady = function () {
     return new Promise((resolve, reject) => {
-        this.onReady(resolve, reject);
-    });
+        this.onReady(resolve, reject)
+    })
 }
 
 
@@ -38,10 +38,9 @@ export function useRouter() {
     const inst = getCurrentInstance()
     if (inst) {
         return inst.proxy.$router as Router
-    } else {
-        warn(OUT_OF_SCOPE)
-        return undefined as unknown as Router
     }
+    warn(OUT_OF_SCOPE)
+    return undefined as unknown as Router
 }
 
 export interface RouteLocationNormalized extends Route {}
@@ -53,14 +52,14 @@ const ROUTE_KEYS = [
 ] as const
 
 export function useRoute() {
-    const router = useRouter();
+    const router = useRouter()
     if (router) {
         const route = {} as RouteLocationNormalizedLoaded
         for (const key of ROUTE_KEYS) {
             Object.defineProperty(route, key, {
                 enumerable: true,
                 get: () => router.currentRoute[key],
-            });
+            })
         }
         return route
     }
