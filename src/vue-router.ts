@@ -47,14 +47,24 @@ export function useRouter() {
 export interface RouteLocationNormalized extends Route {}
 export interface RouteLocationNormalizedLoaded extends Route {}
 
+const ROUTE_KEYS = [
+    'name', 'meta', 'path', 'hash', 'query',
+    'params', 'fullPath', 'matched', 'redirectedFrom'
+] as const
+
 export function useRoute() {
-    const inst = getCurrentInstance()
-    if (inst) {
-        return inst.proxy.$route as RouteLocationNormalizedLoaded
-    } else {
-        warn(OUT_OF_SCOPE)
-        return undefined as unknown as RouteLocationNormalizedLoaded
+    const router = useRouter();
+    if (router) {
+        const route = {} as RouteLocationNormalizedLoaded
+        for (const key of ROUTE_KEYS) {
+            Object.defineProperty(route, key, {
+                enumerable: true,
+                get: () => router.currentRoute[key],
+            });
+        }
+        return route
     }
+    return undefined as unknown as RouteLocationNormalizedLoaded
 }
 
 
