@@ -33,7 +33,7 @@ router.push('/login');
 |Declaration|Description|
 |-|-|
 |`createStore`&lt;S&gt;(options: StoreOptions&lt;S&gt;): Store&lt;S&gt;||
-|`useStore`&lt;S = any&gt;(): Store&lt;S&gt; \| undefined||
+|`useStore`&lt;S = any&gt;(): Store&lt;S&gt;|
 
 ### vue2-helpers/vue-router
 |Declaration|Description|

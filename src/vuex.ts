@@ -10,11 +10,12 @@ export function createStore<S>(options: StoreOptions<S>) {
 }
 
     
-export function useStore<S = any>() {
+export function useStore<S = any>(): Store<S> {
     const inst = getCurrentInstance()
     if (inst) {
-        return inst.proxy.$store as Store<S>
+        return inst.proxy.$store
     } else {
         warn(OUT_OF_SCOPE)
     }
+    return undefined as any
 }
