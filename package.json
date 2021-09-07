@@ -1,6 +1,6 @@
 {
   "name": "vue2-helpers",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A util package to use Vue 2 with Composition API easily",
   "author": "Ambit Tsai <ambit_tsai@qq.com>",
   "license": "Apache-2.0",
@@ -34,8 +34,8 @@
   "keywords": [
     "vue",
     "vue3",
-    "util",
-    "helper",
+    "utils",
+    "helpers",
     "composition",
     "vuex",
     "vue-router"
