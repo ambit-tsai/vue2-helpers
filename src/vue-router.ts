@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getCurrentInstance } from '@vue/composition-api'
+import { computed, ComputedRef, getCurrentInstance, reactive, shallowRef } from '@vue/composition-api'
 import VueRouter, { NavigationGuard, Route, RouterOptions, RouteConfig } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
@@ -34,36 +34,41 @@ export function createRouter(options: RouterOptions) {
 }
 
 
-export function useRouter() {
+export function useRouter(): Router {
     const inst = getCurrentInstance()
     if (inst) {
         return inst.proxy.$router as Router
     }
     warn(OUT_OF_SCOPE)
-    return undefined as unknown as Router
+    return undefined as any
 }
+
 
 export interface RouteLocationNormalized extends Route {}
 export interface RouteLocationNormalizedLoaded extends Route {}
 
-const ROUTE_KEYS = [
+
+const currentRoute = shallowRef(VueRouter.START_LOCATION);
+const computedRoute = {} as {
+    [key in keyof Route]: ComputedRef<Route[key]>
+}
+for (const key of [
     'name', 'meta', 'path', 'hash', 'query',
     'params', 'fullPath', 'matched', 'redirectedFrom'
-] as const
+] as const) {
+    computedRoute[key] = computed<any>(() => currentRoute.value[key]);
+}
+let reactiveRoute: Route
 
-export function useRoute() {
+export function useRoute(): RouteLocationNormalizedLoaded {
     const router = useRouter()
-    if (router) {
-        const route = {} as RouteLocationNormalizedLoaded
-        for (const key of ROUTE_KEYS) {
-            Object.defineProperty(route, key, {
-                enumerable: true,
-                get: () => router.currentRoute[key],
-            })
-        }
-        return route
+    if (!router) return undefined as any
+    if (!reactiveRoute) {
+        currentRoute.value = router.currentRoute
+        router.afterEach(to => currentRoute.value = to);
+        reactiveRoute = reactive(computedRoute)
     }
-    return undefined as unknown as RouteLocationNormalizedLoaded
+    return reactiveRoute
 }
 
 
