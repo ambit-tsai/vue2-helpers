@@ -44,40 +44,13 @@ export function useRouter(): Router {
 }
 
 
-export interface RouteLocationNormalized extends Route {}
-export interface RouteLocationNormalizedLoaded extends Route {}
-
-
-function createReactiveRoute(initialRoute: Route) {
-    const routeRef = shallowRef(initialRoute);
-    const computedRoute = {} as {
-        [key in keyof Route]: ComputedRef<Route[key]>
+export function useRoute(): Route {
+    const inst = getCurrentInstance()
+    if (inst) {
+        return inst.proxy.$route as Route
     }
-    for (const key of [
-        'name', 'meta', 'path', 'hash', 'query',
-        'params', 'fullPath', 'matched', 'redirectedFrom'
-    ] as const) {
-        computedRoute[key] = computed<any>(() => routeRef.value[key]);
-    }
-    return [
-        reactive(computedRoute),
-        (route: Route) => {
-            routeRef.value = route
-        },
-    ] as const
-}
-
-let reactiveCurrentRoute: Route
-
-export function useRoute(): RouteLocationNormalizedLoaded {
-    const router = useRouter()
-    if (!router) return undefined as any
-    if (!reactiveCurrentRoute) {
-        let setCurrentRoute: (route: Route) => void
-        [reactiveCurrentRoute, setCurrentRoute] = createReactiveRoute(router.currentRoute)
-        router.afterEach(to => setCurrentRoute(to))
-    }
-    return reactiveCurrentRoute
+    warn(OUT_OF_SCOPE)
+    return undefined as any
 }
 
 
