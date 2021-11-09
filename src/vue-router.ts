@@ -1,11 +1,21 @@
 import Vue from 'vue'
 import { computed, ComputedRef, getCurrentInstance, reactive, shallowRef } from '@vue/composition-api'
-import VueRouter, { NavigationGuard, Route, RouterOptions, RouteConfig, RawLocation } from 'vue-router'
+import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
 
-export type RouteRecordRaw = RouteConfig
-export type RouteLocationRaw = RawLocation
+export {
+    RouteMeta,
+    RouterOptions,
+    RouteRecord,
+    RouteConfig as RouteRecordRaw,
+    RedirectOption as RouteRecordRedirectOption,
+    RawLocation as RouteLocationRaw,
+} from 'vue-router'
+export type RouteRecordName = string | symbol
+export type RouterScrollBehavior = RouterOptions['scrollBehavior']
+export type RouteLocationNormalized = Route
+export type RouteLocationNormalizedLoaded = Route
 
 
 export interface Router extends VueRouter {
@@ -44,10 +54,6 @@ export function useRouter(): Router {
     warn(OUT_OF_SCOPE)
     return undefined as any
 }
-
-
-export interface RouteLocationNormalized extends Route {}
-export interface RouteLocationNormalizedLoaded extends Route {}
 
 
 let currentRoute: RouteLocationNormalizedLoaded
