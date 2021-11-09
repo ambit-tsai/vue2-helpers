@@ -50,36 +50,32 @@ export interface RouteLocationNormalized extends Route {}
 export interface RouteLocationNormalizedLoaded extends Route {}
 
 
-function createReactiveRoute(initialRoute: Route) {
-    const routeRef = shallowRef(initialRoute);
-    const computedRoute = {} as {
-        [key in keyof Route]: ComputedRef<Route[key]>
-    }
-    for (const key of [
-        'name', 'meta', 'path', 'hash', 'query',
-        'params', 'fullPath', 'matched', 'redirectedFrom'
-    ] as const) {
-        computedRoute[key] = computed<any>(() => routeRef.value[key]);
-    }
-    return [
-        reactive(computedRoute),
-        (route: Route) => {
-            routeRef.value = route
-        },
-    ] as const
-}
+let currentRoute: RouteLocationNormalizedLoaded
 
-let reactiveCurrentRoute: Route
-
-export function useRoute(): RouteLocationNormalizedLoaded {
+export function useRoute() {
     const router = useRouter()
-    if (!router) return undefined as any
-    if (!reactiveCurrentRoute) {
-        let setCurrentRoute: (route: Route) => void
-        [reactiveCurrentRoute, setCurrentRoute] = createReactiveRoute(router.currentRoute)
-        router.afterEach(to => setCurrentRoute(to))
+    if (!currentRoute) {
+        const routeRef = shallowRef({
+            path: '/',
+            name: undefined,
+            params: {},
+            query: {},
+            hash: '',
+            fullPath: '/',
+            matched: [],
+            meta: {},
+            redirectedFrom: undefined,
+        } as Route);
+        const computedRoute = {} as {
+            [key in keyof Route]: ComputedRef<Route[key]>
+        }
+        for (const key of Object.keys(routeRef.value) as (keyof Route)[]) {
+            computedRoute[key] = computed<any>(() => routeRef.value[key])
+        }
+        router.afterEach(to => routeRef.value = to)
+        currentRoute = reactive(computedRoute)
     }
-    return reactiveCurrentRoute
+    return currentRoute
 }
 
 
