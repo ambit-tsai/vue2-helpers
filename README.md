@@ -25,18 +25,18 @@ router.push('/login');
 
 ## ✨ API
 ### vue2-helpers
-|Declaration|Description|
+|Features|Description|
 |-|-|
-|`createVuexHelpers`&lt;<br>&nbsp;&nbsp;&nbsp;&nbsp;RootState, RootGetters, RootMutations, RootActions<br>&gt;(): {<br>&nbsp;&nbsp;&nbsp;&nbsp;`useState`, `useGetters`, `useMutations`, `useActions`<br>}|The helper methods in return value are used to replace `mapState`, `mapGetters`, `mapMutations`, `mapActions`|
+|`createVuexHelpers`&lt;<br>&nbsp;&nbsp;&nbsp;&nbsp;RootState, RootGetters, RootMutations, RootActions<br>&gt;(): {<br>&nbsp;&nbsp;&nbsp;&nbsp;`useState`, `useGetters`, `useMutations`, `useActions`<br>}|The helper methods in return value are<br>used to replace `mapState`, `mapGetters`,<br>`mapMutations`, `mapActions`|
 
 ### vue2-helpers/vuex
-|Declaration|Description|
+|Features|Description|
 |-|-|
 |`createStore`&lt;S&gt;(options: StoreOptions&lt;S&gt;): Store&lt;S&gt;||
 |`useStore`&lt;S = any&gt;(): Store&lt;S&gt;|
 
 ### vue2-helpers/vue-router
-|Declaration|Description|
+|Features|Description|
 |-|-|
 |`createRouter`(options: RouterOptions): Router||
 |`onBeforeRouteLeave`(leaveGuard: NavigationGuard): void||
