@@ -47,5 +47,8 @@
     "composition",
     "vuex",
     "vue-router"
-  ]
+  ],
+  "dependencies": {
+    "@vueuse/core": "^7.1.2"
+  }
 }

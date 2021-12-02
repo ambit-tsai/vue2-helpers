@@ -1,6 +1,7 @@
 import Vue from 'vue'
-import { computed, ComputedRef, getCurrentInstance, reactive, shallowRef } from '@vue/composition-api'
+import { computed, getCurrentInstance } from '@vue/composition-api'
 import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
+import { toReactive } from '@vueuse/core';
 import { OUT_OF_SCOPE, warn } from './utils'
 
 
@@ -56,32 +57,18 @@ export function useRouter(): Router {
 }
 
 
-let currentRoute: RouteLocationNormalizedLoaded
-
 export function useRoute() {
-    const router = useRouter()
-    if (!currentRoute) {
-        const routeRef = shallowRef({
-            path: '/',
-            name: undefined,
-            params: {},
-            query: {},
-            hash: '',
-            fullPath: '/',
-            matched: [],
-            meta: {},
-            redirectedFrom: undefined,
-        } as Route);
-        const computedRoute = {} as {
-            [key in keyof Route]: ComputedRef<Route[key]>
-        }
-        for (const key of Object.keys(routeRef.value) as (keyof Route)[]) {
-            computedRoute[key] = computed<any>(() => routeRef.value[key])
-        }
-        router.afterEach(to => routeRef.value = to)
-        currentRoute = reactive(computedRoute)
+    const inst = getCurrentInstance()
+
+    if (inst) {
+        return toReactive(
+            computed(() => inst.proxy.$route),
+        );
     }
-    return currentRoute
+
+    warn(OUT_OF_SCOPE)
+
+    return undefined as any
 }
 
 
