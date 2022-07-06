@@ -1,7 +1,5 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-import { ComputedRef, computed, getCurrentInstance } from '@vue/composition-api'
-
-
+import { ComputedRef, computed, getCurrentInstance } from 'vue'
 
 type ActionReturnType<T extends (...args: any) => any> = Promise<
     T extends (...args: any) => Promise<infer U> ? U : ReturnType<T>

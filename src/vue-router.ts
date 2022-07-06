@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import { getCurrentInstance, reactive } from '@vue/composition-api'
+import Vue, { getCurrentInstance, reactive } from 'vue'
 import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router'
 import { OUT_OF_SCOPE, warn } from './utils'
 
