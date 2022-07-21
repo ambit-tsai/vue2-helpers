@@ -27,6 +27,9 @@
         "vuex": "^3"
     },
     "peerDependenciesMeta": {
+        "vue-router": {
+            "optional": true
+        },
         "vuex": {
             "optional": true
         }
