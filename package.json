@@ -1,55 +1,55 @@
 {
-  "name": "vue2-helpers",
-  "version": "1.1.6",
-  "description": "A util package to use Vue 2 with Composition API easily",
-  "author": {
-    "name": "Ambit Tsai",
-    "email": "ambit_tsai@qq.com"
-  },
-  "license": "Apache-2.0",
-  "main": "index.js",
-  "scripts": {
-    "build": "node scripts/build.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ambit-tsai/vue2-helpers.git"
-  },
-  "homepage": "https://github.com/ambit-tsai/vue2-helpers#readme",
-  "bugs": {
-    "url": "https://github.com/ambit-tsai/vue2-helpers/issues"
-  },
-  "dependencies": {
-    "@vue/composition-api": "^1",
-    "vue": ">= 2.5 < 2.7"
-  },
-  "peerDependencies": {
-    "vue-router": "^3",
-    "vuex": "^3"
-  },
-  "peerDependenciesMeta": {
-    "vue-router": {
-      "optional": true
+    "name": "vue2-helpers",
+    "version": "1.2.0",
+    "description": "A util package to use Vue 2 with Composition API easily",
+    "author": {
+        "name": "Ambit Tsai",
+        "email": "ambit_tsai@qq.com"
     },
-    "vuex": {
-      "optional": true
-    }
-  },
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^8.3.3",
-    "rollup": "^2.77.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.7.4",
-    "vue-router": "^3.5.4",
-    "vuex": "^3.6.2"
-  },
-  "keywords": [
-    "vue",
-    "vue3",
-    "utils",
-    "helpers",
-    "composition",
-    "vuex",
-    "vue-router"
-  ]
+    "license": "Apache-2.0",
+    "main": "index.js",
+    "scripts": {
+        "build": "node scripts/build.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ambit-tsai/vue2-helpers.git"
+    },
+    "homepage": "https://github.com/ambit-tsai/vue2-helpers#readme",
+    "bugs": {
+        "url": "https://github.com/ambit-tsai/vue2-helpers/issues"
+    },
+    "dependencies": {
+        "@vue/composition-api": "^1.1.0",
+        "vue": ">= 2.5 < 2.7"
+    },
+    "peerDependencies": {
+        "vue-router": "^3",
+        "vuex": "^3"
+    },
+    "peerDependenciesMeta": {
+        "vue-router": {
+            "optional": true
+        },
+        "vuex": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@rollup/plugin-typescript": "^8.3.3",
+        "rollup": "^2.77.0",
+        "rollup-plugin-terser": "^7.0.2",
+        "typescript": "^4.7.4",
+        "vue-router": "^3.5.4",
+        "vuex": "^3.6.2"
+    },
+    "keywords": [
+        "vue",
+        "vue3",
+        "utils",
+        "helpers",
+        "composition",
+        "vuex",
+        "vue-router"
+    ]
 }
