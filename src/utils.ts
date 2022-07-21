@@ -1,3 +1,4 @@
-export const { warn } = console
+export const { warn } = console;
 
-export const OUT_OF_SCOPE = 'getCurrentInstance() returned null. Method must be called at the top of a setup function'
+export const OUT_OF_SCOPE =
+    'method can only be used inside setup() or functional components';

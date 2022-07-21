@@ -1,6 +1,10 @@
 # Vue2 Helpers
 A util package to use Vue 2 with Composition API easily.
 
+> NOTE: 
+> - vue2-helpers@**1** is for vue2.5 and 2.6
+> - vue2-helpers@**2** is for vue2.7
+
 
 ## ⬇️ Install
 ```
@@ -47,6 +51,6 @@ router.push('/login');
 
 
 ## ☎️ Contact
-1. WeChat: ambit_tsai
+1. WeChat: cai_fanwei
 1. QQ Group: 663286147
 1. E-mail: ambit_tsai@qq.com
