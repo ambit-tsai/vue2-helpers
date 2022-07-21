@@ -1,6 +1,10 @@
 # Vue2 Helpers
 A util package to use Vue 2 with Composition API easily.
 
+> NOTE: 
+> - vue2-helpers@**1** is for vue2.5 and 2.6
+> - vue2-helpers@**2** is for vue2.7
+
 
 ## ⬇️ Install
 ```
