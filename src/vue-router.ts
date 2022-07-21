@@ -21,7 +21,7 @@ export interface Router extends VueRouter {
     /** @deprecated */
     app: VueRouter['app'];
 
-    /** @deprecated */
+    /** @deprecated use `currentRoute.matched` instead */
     getMatchedComponents: VueRouter['getMatchedComponents'];
 
     /** @deprecated use `isReady` instead */
