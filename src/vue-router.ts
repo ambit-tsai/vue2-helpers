@@ -1,8 +1,8 @@
-import Vue, { getCurrentInstance, reactive } from 'vue';
+import Vue, { effectScope, getCurrentInstance, reactive } from 'vue';
 import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router';
 import { OUT_OF_SCOPE, warn } from './utils';
 
-export {
+export type {
     RouteMeta,
     RouterOptions,
     RouteRecord,
@@ -49,20 +49,32 @@ export function useRouter(): Router {
     return undefined as any;
 }
 
-let currentRoute: RouteLocationNormalizedLoaded;
+let currentRoute: Route;
 
-export function useRoute() {
-    const router = useRouter();
+export function useRoute(): RouteLocationNormalizedLoaded {
+    const inst = getCurrentInstance();
+    if (!inst) {
+        warn(OUT_OF_SCOPE);
+        return undefined as any;
+    }
     if (!currentRoute) {
-        const inst = getCurrentInstance();
-        if (!inst) {
-            warn(OUT_OF_SCOPE);
-            return;
-        }
-        currentRoute = reactive({ ...inst.proxy.$route } as Route);
-        router.afterEach((to) => Object.assign(currentRoute, to));
+        const scope = effectScope(true);
+        scope.run(() => {
+            const { $router } = inst.proxy;
+            currentRoute = reactive(assign({}, $router.currentRoute)) as any;
+            $router.afterEach((to) => {
+                assign(currentRoute, to);
+            });
+        });
     }
     return currentRoute;
+}
+
+function assign(target: Record<string, any>, source: Record<string, any>) {
+    for (const key of Object.keys(source)) {
+        target[key] = source[key];
+    }
+    return target;
 }
 
 export function onBeforeRouteLeave(leaveGuard: NavigationGuard) {
