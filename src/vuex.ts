@@ -11,8 +11,7 @@ export function useStore<S = any>(): Store<S> {
     const inst = getCurrentInstance();
     if (inst) {
         return inst.proxy.$store;
-    } else {
-        warn(OUT_OF_SCOPE);
     }
+    warn(OUT_OF_SCOPE);
     return undefined as any;
 }
