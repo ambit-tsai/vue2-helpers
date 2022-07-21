@@ -18,7 +18,6 @@ async function compile(file) {
         input: file,
         external: [
             'vue',
-            '@vue/composition-api',
             'vuex',
             'vue-router',
         ],
