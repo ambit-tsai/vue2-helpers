@@ -4,14 +4,19 @@ import {
     getCurrentInstance,
     reactive,
 } from '@vue/composition-api';
-import VueRouter, { NavigationGuard, Route, RouterOptions } from 'vue-router';
+import VueRouter, {
+    NavigationGuard,
+    Route,
+    RouterOptions,
+    RouteConfig as RouteRecordRaw,
+} from 'vue-router';
 import { OUT_OF_SCOPE, warn } from './utils';
 
+export { RouteRecordRaw };
 export {
     RouteMeta,
     RouterOptions,
     RouteRecord,
-    RouteConfig as RouteRecordRaw,
     RedirectOption as RouteRecordRedirectOption,
     RawLocation as RouteLocationRaw,
 } from 'vue-router';
@@ -31,6 +36,8 @@ export interface Router extends VueRouter {
 
     /** @deprecated use `isReady` instead */
     onReady: VueRouter['onReady'];
+
+    routes: RouteRecordRaw[];
 }
 
 // @ts-ignore
