@@ -2,23 +2,27 @@ import Vue, { effectScope, getCurrentInstance, reactive } from 'vue';
 import VueRouter, {
     NavigationGuard,
     Route,
-    RouterOptions,
+    RouterOptions as RawRouterOptions,
     RouteConfig as RouteRecordRaw,
 } from 'vue-router';
 import { OUT_OF_SCOPE, warn } from './utils';
 
-export { RouteRecordRaw };
+export type { NavigationGuard, RouteRecordRaw };
 export type {
     RouteMeta,
-    RouterOptions,
     RouteRecord,
     RedirectOption as RouteRecordRedirectOption,
     RawLocation as RouteLocationRaw,
 } from 'vue-router';
-export type RouteRecordName = string | symbol;
-export type RouterScrollBehavior = RouterOptions['scrollBehavior'];
+export type RouterScrollBehavior = RawRouterOptions['scrollBehavior'];
 export type RouteLocationNormalized = Route;
 export type RouteLocationNormalizedLoaded = Route;
+export type RouteRecordName = string | symbol;
+
+export interface RouterOptions extends RawRouterOptions {
+    routes: RouteRecordRaw[];
+    scrollBehavior?: RouterScrollBehavior;
+}
 
 export interface Router extends VueRouter {
     isReady(): Promise<void>;
@@ -31,8 +35,6 @@ export interface Router extends VueRouter {
 
     /** @deprecated use `isReady` instead */
     onReady: VueRouter['onReady'];
-
-    routes: RouteRecordRaw[];
 }
 
 // @ts-ignore
