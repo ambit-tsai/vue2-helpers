@@ -1,6 +1,6 @@
 {
     "name": "vue2-helpers",
-    "version": "1.2.0",
+    "version": "1.2.2",
     "description": "A util package to use Vue 2 with Composition API easily",
     "author": {
         "name": "Ambit Tsai",

@@ -65,7 +65,7 @@ export function useRouter(): Router {
 
 let currentRoute: Route;
 
-export function useRoute() {
+export function useRoute(): RouteLocationNormalizedLoaded {
     const inst = getCurrentInstance();
     if (!inst) {
         warn(OUT_OF_SCOPE);
