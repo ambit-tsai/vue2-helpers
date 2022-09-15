@@ -40,7 +40,7 @@ export interface Router extends VueRouter {
 // @ts-ignore
 VueRouter.prototype.isReady = function () {
     return new Promise((resolve, reject) => {
-        this.onReady(resolve, reject);
+        this.onReady(resolve as any, reject);
     });
 };
 

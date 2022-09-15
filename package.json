@@ -1,6 +1,6 @@
 {
     "name": "vue2-helpers",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "description": "A util package to use Vue 2 with Composition API easily",
     "author": {
         "name": "Ambit Tsai",
@@ -19,10 +19,8 @@
     "bugs": {
         "url": "https://github.com/ambit-tsai/vue2-helpers/issues"
     },
-    "dependencies": {
-        "vue": "~2.7.0"
-    },
     "peerDependencies": {
+        "vue": "~2.7.0",
         "vue-router": "^3",
         "vuex": "^3"
     },
@@ -39,6 +37,7 @@
         "rollup": "^2.77.0",
         "rollup-plugin-terser": "^7.0.2",
         "typescript": "^4.7.4",
+        "vue": "~2.7.0",
         "vue-router": "^3.5.4",
         "vuex": "^3.6.2"
     },
