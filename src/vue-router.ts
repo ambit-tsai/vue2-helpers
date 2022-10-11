@@ -52,7 +52,7 @@ export function createRouter(options: RouterOptions) {
 export function useRouter(): Router {
     const inst = getCurrentInstance();
     if (inst) {
-        return inst.proxy.$router as Router;
+        return inst.proxy.$root.$router as Router;
     }
     warn(OUT_OF_SCOPE);
     return undefined as any;
@@ -61,17 +61,15 @@ export function useRouter(): Router {
 let currentRoute: Route;
 
 export function useRoute(): RouteLocationNormalizedLoaded {
-    const inst = getCurrentInstance();
-    if (!inst) {
-        warn(OUT_OF_SCOPE);
+    const router = useRouter();
+    if (!router) {
         return undefined as any;
     }
     if (!currentRoute) {
         const scope = effectScope(true);
         scope.run(() => {
-            const { $router } = inst.proxy;
-            currentRoute = reactive(assign({}, $router.currentRoute)) as any;
-            $router.afterEach((to) => {
+            currentRoute = reactive(assign({}, router.currentRoute)) as any;
+            router.afterEach((to) => {
                 assign(currentRoute, to);
             });
         });
